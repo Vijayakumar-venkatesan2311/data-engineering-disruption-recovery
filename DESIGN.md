@@ -22,6 +22,23 @@ Using the latest event to decide booking status is unsafe, as conflicting or lat
 
 Finally, simple aggregation ignores business context. High-value customers with fewer events may require more attention than low-value bookings generating large volumes of log activity. Without considering this, prioritization during outages becomes unreliable.
 
+### Guiding Principles
+
+**Logs are signals, not final answers**
+- Event logs show what different systems reported at a moment in time. They help understand activity and issues, but they are not reliable enough to decide the final customer outcome.
+
+**The booking record is the agency’s truth**
+- The booking snapshot reflects what the travel agency currently believes about a booking, including customer ownership, tier, and revenue exposure. This is treated as the stable reference during disruptions.
+
+**One booking always represents one customer**
+- A booking ID belongs to the travel agency and identifies a single customer booking. Even if multiple airlines are involved or the booking changes during disruption, it is still the same booking.
+
+**More events do not mean more impact**
+- A high number of log events usually indicates retries or system instability, not higher revenue or more customers affected. Business impact is judged using booking value and customer tier, not event count.
+
+**It is better to show uncertainty than give a wrong answer**
+- When systems disagree or data is unclear, the design avoids forcing a conclusion. Showing uncertainty is safer than presenting confident but incorrect information during outages.
+
 
 
 
