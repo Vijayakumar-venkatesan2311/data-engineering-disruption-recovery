@@ -3,6 +3,7 @@
 ### Design Philosophy
 This system is designed to support correct decision-making during large scale service disruptions in an online travel agency. When outages happen, different systems send repeated and conflicting updates about the same booking. The goal is not to perfectly reconcile all data, but to prevent incorrect prioritization of customers and revenue exposure when systems are under stress. Instead of trying to make all data perfectly consistent, the focus is on avoiding wrong decisions during high-pressure situations and giving customer support teams information they can trust.
 
+
 ### Data Problems Observed During Disruption
 While reviewing the event logs, it became clear that the same booking appears many times in different forms. A single booking ID can generate hundreds of log records because systems retry requests, users repeatedly check flight status, and airline systems send frequent updates. These records reflect what different systems attempted or observed at a specific time, not what finally happened for the customer.
 

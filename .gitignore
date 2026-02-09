@@ -1,0 +1,13 @@
+# Airflow runtime
+logs/
+__pycache__/
+
+# Data layers (generated)
+dags/data/
+*.parquet
+*.jsonl
+
+# OS / IDE
+.vscode/
+.idea/
+.DS_Store
